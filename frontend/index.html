@@ -1,36 +1,53 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Links</title>
-    <link rel="stylesheet" href="styles/global.css">
+    <title>Padaria - Login</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
-<body class="container mx-auto px-8 py-28 sm:px-12">
+<body>
+    <h1>Login</h1>
     
-    <h1 class="sm:mb-18 mb-24 w-full text-center text-4xl font-extrabold dark:text-slate-50 sm:mx-auto sm:w-4/5">
-        Fila de Chamadas
-    </h1>
+    <div class="grid-container">
+        <div class="card-login-register">
+            <h2>Login</h2>
+            
+                <input type="email" name="email" id="email" placeholder="E-mail" required>
+                <input type="password" name="password" id="password" placeholder="Senha" required>
+                <button type="submit" onclick="loginButton()">Entrar</button>
+           
+            <h1 id="resposta"></h1>
+            
+            <p>Não tem uma conta? <a href="cadastro.html" id="register">Cadastre-se </a></p>
 
-    <div class="grid grid-cols-3 gap-4 " class="container">
-        <div class="rounded-lg bg-white py-5 px-6 text-center text-slate-800 shadow-lg shadow-slate-200">
-            <div >
-                <a  href="chamadas.html">Chamadas</a>
-            </div>
-        </div>
-
-        <div class="rounded-lg bg-white py-5 px-6 text-center text-slate-800 shadow-lg shadow-slate-200">
-            <div>
-                <a href="atendimento.html">Atendimento</a>
-            </div>
-        </div>
-
-        <div class="rounded-lg bg-white py-5 px-6 text-center text-slate-800 shadow-lg shadow-slate-200">
-            <div>
-                <a href="senha.html">Senha</a>
-            </div>
         </div>
     </div>
-    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        function loginButton() {
+          const url = "http://localhost:8000/login";
+          const email = document.getElementById("email").value
+          const password = document.getElementById("password").value
+          fetch(url, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ email, password })
+            })
+            .then(async (response) => {
+                if (!response.ok) {
+                    throw new Error("Erro ao logar");
+                }
+                alert("Logado com sucesso!");
+                location.href = "pagina.html"
+            })
+            .catch((err) => {
+                alert("Senha ou Email está incorreto");
+                console.error(err);
+            });
+        }
+    </script>
 </body>
 </html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Cadastro</h1>
+    <div class="grid-container">
+        <div class="card-login-register">
+            <h2>Cadastro</h2>
+            <form action="" method="POST">
+                <input type="text" name="name" id="name" placeholder="Nome Completo" required>
+                <input type="email" name="email" id="email" placeholder="E-mail" required>
+                <input type="password" name="password" id="password" placeholder="Senha" required>
+                <button type="submit" onclick="registerButton()">Cadastrar</button>
+            </form>
+            <p>Já tem uma conta? <a href="index.html" id="login">Faça login</a></p>
+        </div>
+    </div>
+
+    <script>
+        function registerButton(event) {
+            event.preventDefault(); // Impede o reload da página
+
+            const url = "http://localhost:8000/register";
+            const name = document.querySelector("#name").value;
+            const email = document.querySelector("#email").value;
+            const password = document.querySelector("#password").value;
+
+            fetch(url, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ name, email, password })
+            })
+            .then(async (response) => {
+                if (!response.ok) {
+                    throw new Error("Erro ao registrar");
+                }
+                alert("Registrado com sucesso!");
+            })
+            .catch((err) => {
+                alert("Este email já foi registrado, tente outro!");
+                console.error(err);
+            });
+        }
+
+        document.querySelector("form").addEventListener("submit", registerButton);
+    </script>
+</body>
+</html>

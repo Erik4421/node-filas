@@ -1,0 +1,63 @@
+body {
+    background-image: url("https://cdn.pixabay.com/photo/2016/10/18/02/31/paper-1749148_1280.jpg");
+    background-size: cover;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    color: rgb(228, 150, 3);
+    font-size: 2.5rem;
+    margin: 20px 0;
+}
+
+.grid-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: 0.3s ease;
+    width: 150px;
+}
+
+.card-login-register {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: 0.3s ease;
+    
+}
+
+.card-login-register:hover {
+    transform: scale(1.2);
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.link {
+    text-decoration: none;
+    font-size: 1.2rem;
+    color: #B45309;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.icon {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
